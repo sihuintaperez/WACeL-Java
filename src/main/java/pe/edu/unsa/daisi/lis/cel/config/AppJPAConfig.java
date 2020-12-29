@@ -39,6 +39,7 @@ public class AppJPAConfig {
 
 	@Autowired
 	private Environment env;
+	private static final String ACTION_01 = "hibernate.hbm2ddl.auto";
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -69,7 +70,7 @@ public class AppJPAConfig {
 		
 		 // Setting Hibernate properties
 	    props.put(SHOW_SQL, env.getRequiredProperty("hibernate.show_sql"));
-	    props.put(HBM2DDL_AUTO, env.getRequiredProperty("hibernate.hbm2ddl.auto"));
+	    props.put(HBM2DDL_AUTO, env.getRequiredProperty(ACTION_01));
 
 	    // Setting C3P0 properties
 	    props.put(C3P0_MIN_SIZE, env.getRequiredProperty("hibernate.c3p0.min_size"));
@@ -98,7 +99,7 @@ public class AppJPAConfig {
 
 	Properties additionalProperties() {
 		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto",env.getRequiredProperty("hibernate.hbm2ddl.auto")); //create-drop
+		properties.setProperty(ACTION_01,env.getRequiredProperty(ACTION_01)); //create-drop
 		properties.setProperty("hibernate.dialect", env.getRequiredProperty("mysql.dialect"));
 
 		return properties;
