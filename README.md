@@ -3,19 +3,20 @@ Mediante el uso de clean code y sonar qube se detectaron varios smells codes a c
 
 ## src/main/java/pe/edu/unsa/daisi/lis/cel/config/WebSecurityConfig.java
 
-@Bean
+	@Bean
 	public PersistentTokenBasedRememberMeServices getPersistentTokenBasedRememberMeServices() {
 		PersistentTokenBasedRememberMeServices tokenBasedservice = new PersistentTokenBasedRememberMeServices(
 				"remember-me", userDetailsService, tokenRepository);
 
 Se reemplazo por :
-@Bean
+
+	@Bean
 	public PersistentTokenBasedRememberMeServices getPersistentTokenBasedRememberMeServices() {
 		 return new PersistentTokenBasedRememberMeServices("remember-me", userDetailsService, tokenRepository);
 	}
  Debido a que la creacion de una variable temporal para devolver el objeto .
 ## src/main/java/pe/edu/unsa/daisi/lis/cel/config/WebSecurityConfig.java
-@Bean
+	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	};
@@ -26,7 +27,7 @@ El string "hibernate.hbm2ddl.auto" se repite con cierta regularidad , esto es de
 
    ### private static final String ACTION_01 = "hibernate.hbm2ddl.auto";
 
-		props.put(SHOW_SQL, env.getRequiredProperty("hibernate.show_sql"));
+	    props.put(SHOW_SQL, env.getRequiredProperty("hibernate.show_sql"));
 	    props.put(HBM2DDL_AUTO, env.getRequiredProperty(ACTION_01));
 
 	Properties additionalProperties() {
